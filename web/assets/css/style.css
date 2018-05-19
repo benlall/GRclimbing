@@ -1,0 +1,114 @@
+@font-face {
+    font-family: 'neoretrodrawregular';
+    src: url("/assets/fonts/NEORD___-webfont.woff") format('woff');
+}
+
+body  {
+    background: no-repeat top right url("/assets/images/img_4622_3.jpg");
+    background-color: rgb(16,16,16);
+    font-family: Tahoma sans-serif;
+    font-size: 1rem;
+}
+
+.container{
+    background-color: rgb(200,200,200);
+}
+
+.w-90 {
+    width: 90%;
+}
+
+
+#header{
+    margin: 20px auto;
+}
+
+h1{
+    font-family: "neoretrodrawregular";
+    font-size: 5rem;
+}
+
+.carousel-caption {
+    position: absolute;
+    right: 10%;
+    bottom: 0px;
+    left: 10%;
+    z-index: 10;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    color: #fff;
+    text-align: center;
+}
+
+#nav {
+    margin: 20px auto;
+    background-color: rgb(252,252,252);
+}
+
+h2 {
+    background-color: rgb(62,62,62);
+    border-radius: 10px;
+    color: rgb(252,252,252);
+    font-family: "neoretrodrawregular";
+}
+
+.partner-card .card-body{
+    font-size: 0.9rem;
+}
+
+
+h4{
+    background-color: rgb(252,252,252);
+    border-radius: 10px;
+}
+
+.btn-outline-secondary {
+    color: rgb(62,62,62);
+    border-color: rgb(62,62,62);
+}
+
+.btn-outline-secondary:hover {
+    background-color: rgb(62,62,62);
+}
+
+.btn-secondary {
+    background-color: rgb(62,62,62);
+}
+
+.btn-secondary:hover {
+    background-color: rgb(106,106,106);
+}
+
+table {
+    border-collapse: separate;
+    empty-cells: hide;
+}
+
+.table td,
+.table th{
+    border: 1px solid #839FB5;
+}
+
+td,
+th {
+    border: 1px solid #839FB5;
+}
+
+caption{
+    caption-side: top;
+    color: rgb(0, 204, 0);
+}
+
+
+#siteffme{
+    color: rgb(0,154,217);
+}
+
+
+/* button top bottom on layout */
+#scrollUp {
+    position: fixed;
+    bottom: 50px;
+    left: 2%;
+    opacity: 0.8;
+}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Licensees list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Login</th>
+                <th>Password</th>
+                <th>Staff</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for licensee in licensees %}
+            <tr>
+                <td><a href="{{ path('licensee_show', { 'id': licensee.id }) }}">{{ licensee.id }}</a></td>
+                <td>{{ licensee.email }}</td>
+                <td>{{ licensee.login }}</td>
+                <td>{{ licensee.password }}</td>
+                <td>{% if licensee.staff %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('licensee_show', { 'id': licensee.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('licensee_edit', { 'id': licensee.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('licensee_new') }}">Create a new licensee</a>
+        </li>
+    </ul>
+{% endblock %}
