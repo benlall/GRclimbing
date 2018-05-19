@@ -4,7 +4,7 @@
 }
 
 body  {
-    background: no-repeat top right url("/assets/images/img_4622_3.jpg");
+    background: url("/assets/images/img_4622_3.jpg") no-repeat top right ;
     background-color: rgb(16,16,16);
     font-family: Tahoma sans-serif;
     font-size: 1rem;
@@ -16,11 +16,6 @@ body  {
 
 .w-90 {
     width: 90%;
-}
-
-
-#header{
-    margin: 20px auto;
 }
 
 h1{
@@ -41,7 +36,6 @@ h1{
 }
 
 #nav {
-    margin: 20px auto;
     background-color: rgb(252,252,252);
 }
 
@@ -52,10 +46,19 @@ h2 {
     font-family: "neoretrodrawregular";
 }
 
+.other{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .partner-card .card-body{
     font-size: 0.9rem;
 }
 
+.partner-card .card-header{
+    background-color: rgba(0, 0, 0, 0.1);
+}
 
 h4{
     background-color: rgb(252,252,252);
@@ -98,12 +101,6 @@ caption{
     caption-side: top;
     color: rgb(0, 204, 0);
 }
-
-
-#siteffme{
-    color: rgb(0,154,217);
-}
-
 
 /* button top bottom on layout */
 #scrollUp {
