@@ -42,4 +42,13 @@ class MainController extends Controller
         return $this->render('default/contact.html.twig');
     }
 
+    /**
+     * @Route("/climbers", name="climbers")
+     * @Method("GET")
+     */
+    public function climbersAction()
+    {
+        return $this->render('default/climbers.html.twig');
+    }
+
 }
