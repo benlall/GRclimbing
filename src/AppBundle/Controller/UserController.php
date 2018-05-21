@@ -31,6 +31,7 @@ class UserController extends Controller
         ));
     }
 
+// modifier le champ password type text
     /**
      * Creates a new user entity : licensee or staff
      *
