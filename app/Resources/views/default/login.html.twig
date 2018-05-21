@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'default/header.html.twig' %}
+    {% include 'default/nav.html.twig' %}
+
+    <div class="container rounded">
+        <div class="row justify-content-center">
+            <section class="col-lg-9 text-center">
+
+            </section>
+            {% include 'default/other.html.twig' %}
+        </div>
+    </div>
+
+    {% include 'default/footer.html.twig' %}
+
+    <div id="scrollUp">
+        <a href="#top"><img src="/assets/images/to_top.png"/></a>
+    </div>
+{% endblock %}

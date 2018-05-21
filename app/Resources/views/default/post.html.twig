@@ -1,0 +1,7 @@
+<div class="card shadow-sm w-75 m-auto">
+    <img class="card-img-top" src="{{ post.imgTitle }}" alt="image du titre">
+    <div class="card-body">
+        <h4 class="m-1 p-1" class="card-title">{{ post.title }}</h4>
+        <p class="text-justify p-1 m-1" class="card-text">{{ post.content }}<br>{{ post.author }} <small>{{ post.createdAt|date('d-m-Y') }}</small></p>
+    </div>
+</div>
