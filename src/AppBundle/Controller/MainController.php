@@ -11,7 +11,7 @@ use AppBundle\Entity\Post;
 class MainController extends Controller
 {
     /**
-     * @Route("/{id}", name="homepage")
+     * @Route("/{id}", name="homepage" , requirements={"id" = "\d+"})
      */
     public function indexAction($id)
     {
@@ -26,10 +26,20 @@ class MainController extends Controller
 
     /**
      * @Route("/login", name="login")
+     * @Method("GET")
      */
-    public function loginAction(Request $request)
+    public function loginAction()
     {
         return $this->render('default/login.html.twig');
+    }
+
+    /**
+     * @Route("/contact", name="contact")
+     * @Method("GET")
+     */
+    public function contactAction()
+    {
+        return $this->render('default/contact.html.twig');
     }
 
 }
