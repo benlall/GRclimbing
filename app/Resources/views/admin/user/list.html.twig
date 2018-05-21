@@ -1,12 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base_admin.html.twig' %}
 
-{% block body %}
-    <h1>users list</h1>
+{% block section %}
+    <h1>Liste des utilisateurs</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Email</th>
                 <th>Login</th>
                 <th>Password</th>
@@ -17,7 +16,6 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.login }}</td>
                 <td>{{ user.password }}</td>
@@ -25,10 +23,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
+                            <a href="{{ path('user_show', { 'id': user.id }) }}">Voir</a>
                         </li>
                         <li>
-                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
+                            <a href="{{ path('user_edit', { 'id': user.id }) }}">Modifier</a>
                         </li>
                     </ul>
                 </td>
@@ -39,7 +37,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('user_new') }}">Create a new user</a>
+            <a href="{{ path('user_new') }}">Enregistrer un nouvel utilisateur</a>
         </li>
     </ul>
 {% endblock %}
