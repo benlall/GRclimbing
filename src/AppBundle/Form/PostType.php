@@ -5,22 +5,31 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
-class LicenseeType extends AbstractType
+class PostType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('email')->add('login')->add('password')->add('staff');
-    }/**
+        $builder
+            ->add('title')
+            ->add('content')
+            ->add('public')
+            ->add('createdAt', DateType::class, array('data' => new \DateTime('now')))
+            ->add('author')
+            ->add('imgTitle');
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Licensee'
+            'data_class' => 'AppBundle\Entity\Post'
         ));
     }
 
@@ -29,7 +38,7 @@ class LicenseeType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_licensee';
+        return 'appbundle_post';
     }
 
 

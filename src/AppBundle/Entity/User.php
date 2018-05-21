@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Licensee
  *
- * @ORM\Table(name="licensee")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\LicenseeRepository")
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class Licensee
+class User
 {
     /**
      * @var int

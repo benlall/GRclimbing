@@ -1,0 +1,23 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block section %}
+    <h1>News</h1>
+    <p>news publique : {% if post.public %}Yes{% else %}No{% endif %}</p>
+
+    <div class="card shadow-sm w-75 m-auto">
+        <img class="card-img-top" src="{{ post.imgTitle }}" alt="Repas début saison">
+        <div class="card-body">
+            <h4 class="m-1 p-1" class="card-title">{{ post.title }}</h4>
+            <p class="text-justify p-1 m-1" class="card-text">{{ post.content }}<br>{{ post.author }} <small>{{ post.createdAt|date('d-m-Y') }}</small></p>
+        </div>
+    </div>
+
+    <ul>
+        <li>
+            <a href="{{ path('post_list') }}">Revenir à la liste des news</a>
+        </li>
+        <li>
+            <a href="{{ path('post_edit', { 'id': post.id }) }}">Modifier la news</a>
+        </li>
+    </ul>
+{% endblock %}
