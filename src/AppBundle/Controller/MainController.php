@@ -15,9 +15,9 @@ class MainController extends Controller
      */
     public function indexAction($id)
     {
-        // post : not with id but with latest id
+        // post : not with id but with latest public id
         $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository('AppBundle:Post')->findOneById($id);
+        $post = $em->getRepository(Post::class)->find($id);
 
         return $this->render('default/index.html.twig', array(
             'post' => $post
