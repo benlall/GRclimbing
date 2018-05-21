@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Licensees list</h1>
+    <h1>users list</h1>
 
     <table>
         <thead>
@@ -15,20 +15,20 @@
             </tr>
         </thead>
         <tbody>
-        {% for licensee in licensees %}
+        {% for user in users %}
             <tr>
-                <td><a href="{{ path('licensee_show', { 'id': licensee.id }) }}">{{ licensee.id }}</a></td>
-                <td>{{ licensee.email }}</td>
-                <td>{{ licensee.login }}</td>
-                <td>{{ licensee.password }}</td>
-                <td>{% if licensee.staff %}Yes{% else %}No{% endif %}</td>
+                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.login }}</td>
+                <td>{{ user.password }}</td>
+                <td>{% if user.staff %}Yes{% else %}No{% endif %}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('licensee_show', { 'id': licensee.id }) }}">show</a>
+                            <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('licensee_edit', { 'id': licensee.id }) }}">edit</a>
+                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -39,7 +39,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('licensee_new') }}">Create a new licensee</a>
+            <a href="{{ path('user_new') }}">Create a new user</a>
         </li>
     </ul>
 {% endblock %}
