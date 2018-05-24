@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * User controller.
  *
- * @Route("user")
+ * @Route("admin/user")
  */
 class UserController extends Controller
 {
@@ -46,6 +46,9 @@ class UserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $encoder = $this->container->get('security.password_encoder');
+            $encoder = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($encoder);
             $em->persist($user);
             $em->flush();
 

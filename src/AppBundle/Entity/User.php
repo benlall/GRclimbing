@@ -3,14 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Licensee
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="`user`")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -70,7 +71,6 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -94,7 +94,6 @@ class User
     public function setLogin($login)
     {
         $this->login = $login;
-
         return $this;
     }
 
@@ -118,7 +117,6 @@ class User
     public function setPassword($password)
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -142,7 +140,6 @@ class User
     public function setStaff($staff)
     {
         $this->staff = $staff;
-
         return $this;
     }
 
@@ -155,5 +152,49 @@ class User
     {
         return $this->staff;
     }
-}
 
+    public function getUsername()
+    {
+        return $this->email; // l'email est utilisé comme login
+    }
+
+    public function getSalt() {
+        return null;
+    }
+
+    public function getRoles()
+    {
+        if ($this->getStaff()){
+            return array('ROLE_ADMIN'); // on lui accorde le rôle ADMIN
+        } else {
+            return array('ROLE_USER'); // sinon le rôle USER
+        }
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->username,
+            $this->password,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->username,
+            $this->password,
+            ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+}
