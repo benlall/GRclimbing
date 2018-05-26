@@ -12,9 +12,12 @@ security:
 
 
     providers:
-        in_memory:
-            memory: ~
-        userlogin:
+        in_memory: # à n'utiliser qu'en phase de dev
+            memory:
+                users:
+                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        user_db:
             entity:
                 class: AppBundle:User
                 property: email
@@ -26,18 +29,19 @@ security:
             security: false
 
         main:
-            anonymous: ~
+            anonymous: true
             pattern : ^/
-            provider: userlogin
+            provider: user_db
+            provider: in_memory
             form_login :
                 login_path: /login
-                check_path: /login_check
-                default_target_path: /admin
+                check_path: /login_check #path form action
+                default_target_path: redirection
                 always_use_default_target_path: true
-
             logout:
-                path: /logout
+                path:   /logout
                 target: /
+
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }

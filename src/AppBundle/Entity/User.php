@@ -164,7 +164,7 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        if ($this->getStaff()) {
+        if ($this->getStaff() === 1) {
             return array('ROLE_ADMIN'); // si staff: ADMIN
         } else {
             return array('ROLE_USER'); // sinon USER
@@ -181,8 +181,7 @@ class User implements UserInterface, \Serializable
     {
         return serialize(array(
             $this->id,
-            $this->email,
-            $this->login,
+            $this->username,
             $this->password,
         ));
     }
@@ -192,8 +191,8 @@ class User implements UserInterface, \Serializable
     {
         list (
             $this->id,
-            $this->email,
-            $this->login,
+            $this->username,
+
             $this->password,
             ) = unserialize($serialized, ['allowed_classes' => false]);
     }
