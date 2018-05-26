@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use AppBundle\Entity\User;
 
 class SecurityController extends Controller
 {
@@ -26,5 +27,22 @@ class SecurityController extends Controller
             'error'         => $error,
         ));
     }
+
+
+    /**
+     * @Route("/success", name="success_login")
+     */
+    public function successLogin()
+    {
+        $user = $this->getUser();
+
+        if(!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('climbers', ['user' => $user]);
+        }
+
+        return $this->redirectToRoute('admin', ['user' => $user]);
+
+    }
+
 
 }

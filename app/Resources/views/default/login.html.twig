@@ -13,23 +13,30 @@
                 {% endif %}
 
                 <form action="{{ path('login') }}" method="post">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="_username" value="{{ last_username }}" /><br>
-
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="_password" /><br>
-
-                    <input type="hidden" name="_target_path" value="/account" />
-
-                    <button class="btn btn-secondary" type="submit" name="login">login</button>
+                    <div class="form-group">
+                        <label for="username">Email</label>
+                        <input type="text" class="form-control w-50 m-auto" id="username" name="_username" value="{{ last_username }}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" class="form-control w-50 m-auto" id="password" name="_password" />
+                        <a href="#" class="a-login text-left ml-2">mot de passe oublié ?</a>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label align-text-top" for="exampleCheck1">Se souvenir de moi</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" type="submit" name="login">Se connecter</button>
                 </form>
             </section>
         </div>
     </div>
 
-    {% include 'default/footer.html.twig' %}
-
     <div id="scrollUp">
         <a href="#top"><img src="/assets/images/to_top.png"/></a>
     </div>
+
+    {% include 'default/footer.html.twig' %}
 {% endblock %}

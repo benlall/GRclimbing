@@ -23,10 +23,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('user_show', { 'id': user.id }) }}">Voir</a>
+                            <a href="{{ path('show_user', { 'id': user.id }) }}">Voir</a>
                         </li>
                         <li>
-                            <a href="{{ path('user_edit', { 'id': user.id }) }}">Modifier</a>
+                            <a href="{{ path('edit_user', { 'id': user.id }) }}">Modifier</a>
                         </li>
                     </ul>
                 </td>
@@ -37,7 +37,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('user_new') }}">Enregistrer un nouvel utilisateur</a>
+            <a href="{{ path('new_user') }}">Enregistrer un nouvel utilisateur</a>
         </li>
     </ul>
 {% endblock %}

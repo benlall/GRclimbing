@@ -10,7 +10,7 @@ body  {
     font-size: 1rem;
 }
 
-.container{
+.container {
     background-color: rgb(200,200,200);
 }
 
@@ -29,10 +29,7 @@ h1{
     bottom: 0px;
     left: 10%;
     z-index: 10;
-    padding-top: 0px;
-    padding-bottom: 0px;
     color: #fff;
-    text-align: center;
 }
 
 #nav {
@@ -108,4 +105,27 @@ caption{
     bottom: 50px;
     left: 2%;
     opacity: 0.8;
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 2rem;
+    }
+    h2{
+        font-size: 1.5rem;
+    }
+    card-body h4{
+        font: 1.2rem;
+    }
+    h5 {
+        font-size: 1.1rem;
+    }
+    .navbar-expand-md {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1030;
+        background-color: rgb(252,252,252);
+    }
 }
