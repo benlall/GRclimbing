@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'default/header.html.twig' %}
+    {% include 'default/nav.html.twig' %}
+
+<div class="container rounded">
+    <div class="row justify-content-center">
+        <section class="col-lg-9 text-center">
+    <h1>Licensee edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('climbers') }}">Retour à la page news des grimpeurs</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+        </section>
+        {% include 'default/other.html.twig' %}
+    </div>
+</div>
+
+    {% include 'default/footer.html.twig' %}
+
+    <div id="scrollUp">
+        <a href="#top"><img src="/assets/images/to_top.png"/></a>
+    </div>
+{% endblock %}
+
+

@@ -66,9 +66,9 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="img_title", type="string", length=255)
+     * @ORM\Column(name="img_link", type="string", length=255)
      */
-    private $imgTitle;
+    private $imgLink;
 
     /**
      * @return int
@@ -199,18 +199,18 @@ class Post
     /**
      * @return string
      */
-    public function getImgTitle()
+    public function getImgLink()
     {
-        return $this->imgTitle;
+        return $this->imgLink;
     }
 
     /**
-     * @param string $imgTitle
+     * @param string $imgLink
      * @return Post
      */
-    public function setImgTitle($imgTitle)
+    public function setImgLink($imgLink)
     {
-        $this->imgTitle = $imgTitle;
+        $this->imgLink = $imgLink;
         return $this;
     }
 
