@@ -26,16 +26,6 @@ class SecurityController extends Controller
     }
 
     /**
-     * @Route("/check", name="login_check")
-     */
-    public function loginCheck()
-    {
-        $user = $this->getUser();
-       // return $this->render('default/climbers.html.twig', ['user' => $user]);
-        return $this->render('admin/index.html.twig', ['user' => $user]);
-    }
-
-    /**
      * @Route("/redirection", name="redirection")
      */
     public function redirectionAfterLogin()
@@ -43,13 +33,11 @@ class SecurityController extends Controller
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
 
-        /*if (!$user->getStaff()) {
+        if (!$user->getStaff()) {
             return $this->redirectToRoute('climbers', ['user' => $user]);
         }
 
         return $this->redirectToRoute('admin', ['user' => $user]);
-*/return $this->render('admin/index.html.twig', ['user' => $user]);
-
     }
 
 

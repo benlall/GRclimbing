@@ -10,7 +10,6 @@ security:
     role_hierarchy:
         ROLE_ADMIN:   ROLE_USER
 
-
     providers:
         in_memory: # à n'utiliser qu'en phase de dev
             memory:
@@ -34,12 +33,12 @@ security:
             provider: user_db
             provider: in_memory
             form_login :
-                login_path: /login
-                check_path: /login_check #path form action
+                login_path: login
+                check_path: login #path form action in twig
                 default_target_path: redirection
                 always_use_default_target_path: true
             logout:
-                path:   /logout
+                path: logout
                 target: /
 
 

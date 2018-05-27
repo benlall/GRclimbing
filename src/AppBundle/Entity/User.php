@@ -13,6 +13,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface, \Serializable
 {
+    const ROLE_CLIMBER = 0;
+    const ROLE_STAFF = 1;
+
     /**
      * @var int
      *
@@ -49,7 +52,6 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="staff", type="boolean")
      */
     private $staff;
-
 
     /**
      * Get id
@@ -164,10 +166,13 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        if ($this->getStaff() === 1) {
-            return array('ROLE_ADMIN'); // si staff: ADMIN
-        } else {
-            return array('ROLE_USER'); // sinon USER
+        switch($this->getStaff()) {
+            case self::ROLE_STAFF:
+                return array('ROLE_ADMIN');
+                break;
+            case self::ROLE_CLIMBER:
+                return array('ROLE_USER');
+                break;
         }
     }
 
@@ -181,7 +186,7 @@ class User implements UserInterface, \Serializable
     {
         return serialize(array(
             $this->id,
-            $this->username,
+            $this->email,
             $this->password,
         ));
     }
@@ -191,8 +196,7 @@ class User implements UserInterface, \Serializable
     {
         list (
             $this->id,
-            $this->username,
-
+            $this->email,
             $this->password,
             ) = unserialize($serialized, ['allowed_classes' => false]);
     }
