@@ -11,17 +11,27 @@ namespace AppBundle\Repository;
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
-     * @param $id
      * @return array
      */
-    public function findByActivePublicPost($id)
+    public function findByActivePublicPost()
     {
-        $qb = $this
-            ->createQueryBuilder('p')
-            ->setParameter('id', $id)
-            ->where('p.active_post=:active_post and p.public_post:public_post')
-            ->getQuery();
-        return $qb->getResult();
+        return $this->createQueryBuilder('p')
+            ->where('p.activePost = true')
+            ->andWhere('p.publicPost = true')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return array
+     */
+    public function findByActivePrivatePost()
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.activePost = true')
+            ->andWhere('p.publicPost = false')
+            ->getQuery()
+            ->getResult();
     }
 
 }

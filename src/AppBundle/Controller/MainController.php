@@ -11,16 +11,15 @@ use AppBundle\Entity\Post;
 class MainController extends Controller
 {
     /**
-     * @Route("/{id}", name="homepage" , requirements={"id" = "\d+"})
+     * @Route("/", name="homepage" , requirements={"id" = "\d+"})
      */
-    public function indexAction($id)
+    public function indexAction()
     {
-        // post : not with id but with latest public id
         $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository(Post::class)->find($id);
+        $posts = $em->getRepository(Post::class)->findByActivePublicPost();
 
         return $this->render('default/index.html.twig', array(
-            'post' => $post
+            'posts' => $posts
         ));
     }
 
@@ -39,7 +38,12 @@ class MainController extends Controller
      */
     public function climbersAction()
     {
-        return $this->render('default/climbers.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $posts = $em->getRepository(Post::class)->findByActivePrivatePost();
+
+        return $this->render('default/climbers.html.twig', array(
+            'posts' => $posts
+        ));
     }
 
 }

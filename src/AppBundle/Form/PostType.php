@@ -20,7 +20,7 @@ class PostType extends AbstractType
             ->add('public')
             ->add('createdAt', DateType::class, array('data' => new \DateTime('now')))
             ->add('author')
-            ->add('imgTitle');
+            ->add('imgLink');
     }
 
     /**
