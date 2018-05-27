@@ -10,5 +10,19 @@ namespace AppBundle\Repository;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $id
+     * @return array
+     */
+    public function findByActivePublicPost($id)
+    {
+        $qb = $this
+            ->createQueryBuilder('p')
+            ->setParameter('id', $id)
+            ->where('p.active_post=:active_post and p.public_post:public_post')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
 }
 

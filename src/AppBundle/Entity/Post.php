@@ -38,9 +38,16 @@ class Post
     /**
      * @var bool
      *
-     * @ORM\Column(name="public", type="boolean")
+     * @ORM\Column(name="public_post", type="boolean")
      */
-    private $public;
+    private $publicPost;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="active_post", type="boolean")
+     */
+    private $activePost;
 
     /**
      * @var \DateTime
@@ -63,10 +70,7 @@ class Post
      */
     private $imgTitle;
 
-
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -75,22 +79,16 @@ class Post
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
+     * @param int $id
      * @return Post
      */
-    public function setTitle($title)
+    public function setId($id)
     {
-        $this->title = $title;
-
+        $this->id = $id;
         return $this;
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
     public function getTitle()
@@ -99,22 +97,16 @@ class Post
     }
 
     /**
-     * Set content
-     *
-     * @param string $content
-     *
+     * @param string $title
      * @return Post
      */
-    public function setContent($content)
+    public function setTitle($title)
     {
-        $this->content = $content;
-
+        $this->title = $title;
         return $this;
     }
 
     /**
-     * Get content
-     *
      * @return string
      */
     public function getContent()
@@ -123,46 +115,52 @@ class Post
     }
 
     /**
-     * Set public
-     *
-     * @param boolean $public
-     *
+     * @param string $content
      * @return Post
      */
-    public function setPublic($public)
+    public function setContent($content)
     {
-        $this->public = $public;
-
+        $this->content = $content;
         return $this;
     }
 
     /**
-     * Get public
-     *
      * @return bool
      */
-    public function getPublic()
+    public function isPublicPost()
     {
-        return $this->public;
+        return $this->publicPost;
     }
 
     /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
+     * @param bool $publicPost
      * @return Post
      */
-    public function setCreatedAt($createdAt)
+    public function setPublicPost($publicPost)
     {
-        $this->createdAt = $createdAt;
-
+        $this->publicPost = $publicPost;
         return $this;
     }
 
     /**
-     * Get createdAt
-     *
+     * @return bool
+     */
+    public function isActivePost()
+    {
+        return $this->activePost;
+    }
+
+    /**
+     * @param bool $activePost
+     * @return Post
+     */
+    public function setActivePost($activePost)
+    {
+        $this->activePost = $activePost;
+        return $this;
+    }
+
+    /**
      * @return \DateTime
      */
     public function getCreatedAt()
@@ -171,22 +169,16 @@ class Post
     }
 
     /**
-     * Set author
-     *
-     * @param string $author
-     *
+     * @param \DateTime $createdAt
      * @return Post
      */
-    public function setAuthor($author)
+    public function setCreatedAt($createdAt)
     {
-        $this->author = $author;
-
+        $this->createdAt = $createdAt;
         return $this;
     }
 
     /**
-     * Get author
-     *
      * @return string
      */
     public function getAuthor()
@@ -195,27 +187,32 @@ class Post
     }
 
     /**
-     * Set imgTitle
-     *
-     * @param string $imgTitle
-     *
+     * @param string $author
      * @return Post
      */
-    public function setImgTitle($imgTitle)
+    public function setAuthor($author)
     {
-        $this->imgTitle = $imgTitle;
-
+        $this->author = $author;
         return $this;
     }
 
     /**
-     * Get imgTitle
-     *
      * @return string
      */
     public function getImgTitle()
     {
         return $this->imgTitle;
     }
+
+    /**
+     * @param string $imgTitle
+     * @return Post
+     */
+    public function setImgTitle($imgTitle)
+    {
+        $this->imgTitle = $imgTitle;
+        return $this;
+    }
+
 }
 

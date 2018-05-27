@@ -3,15 +3,19 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Licensee
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="`user`")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
+    const ROLE_CLIMBER = 0;
+    const ROLE_STAFF = 1;
+
     /**
      * @var int
      *
@@ -49,7 +53,6 @@ class User
      */
     private $staff;
 
-
     /**
      * Get id
      *
@@ -70,7 +73,6 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -94,7 +96,6 @@ class User
     public function setLogin($login)
     {
         $this->login = $login;
-
         return $this;
     }
 
@@ -118,7 +119,6 @@ class User
     public function setPassword($password)
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -142,7 +142,6 @@ class User
     public function setStaff($staff)
     {
         $this->staff = $staff;
-
         return $this;
     }
 
@@ -155,5 +154,50 @@ class User
     {
         return $this->staff;
     }
-}
 
+    public function getUsername()
+    {
+        return $this->email; // l'email est utilisé comme login
+    }
+
+    public function getSalt() {
+        return null;
+    }
+
+    public function getRoles()
+    {
+        switch($this->getStaff()) {
+            case self::ROLE_STAFF:
+                return array('ROLE_ADMIN');
+                break;
+            case self::ROLE_CLIMBER:
+                return array('ROLE_USER');
+                break;
+        }
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+}

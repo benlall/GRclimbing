@@ -25,15 +25,6 @@ class MainController extends Controller
     }
 
     /**
-     * @Route("/login", name="login")
-     * @Method("GET")
-     */
-    public function loginAction()
-    {
-        return $this->render('default/login.html.twig');
-    }
-
-    /**
      * @Route("/contact", name="contact")
      * @Method("GET")
      */
@@ -43,7 +34,7 @@ class MainController extends Controller
     }
 
     /**
-     * @Route("/climbers", name="climbers")
+     * @Route("/user/climbers", name="climbers")
      * @Method("GET")
      */
     public function climbersAction()
