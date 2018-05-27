@@ -10,6 +10,7 @@ body  {
     font-size: 1rem;
 }
 
+.bg-grey,
 .container {
     background-color: rgb(200,200,200);
 }
@@ -111,10 +112,10 @@ caption{
     h1 {
         font-size: 2rem;
     }
-    h2{
+    h2 {
         font-size: 1.5rem;
     }
-    card-body h4{
+    .card-body h4 {
         font: 1.2rem;
     }
     h5 {
@@ -129,3 +130,10 @@ caption{
         background-color: rgb(252,252,252);
     }
 }
+
+/*BACK*/
+
+.h1-back{
+    font-size: 2rem;
+}
+
