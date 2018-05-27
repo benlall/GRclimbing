@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'default/header.html.twig' %}
+    {% include 'default/nav.html.twig' %}
+
+    <div class="container rounded">
+        <div class="row justify-content-center">
+            <section class="col-lg-9 text-center">
+                    <h1>{{ user.login }}</h1>
+
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Login</th>
+                            <td>{{ user.login }}</td>
+                        </tr>
+                        <tr>
+                            <th>Password</th>
+                            <td>{{ user.password }}</td>
+                        </tr>
+                        <tr>
+                            <th>Staff</th>
+                            <td>{% if user.staff %}Yes{% else %}No{% endif %}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <ul>
+                        <li>
+                            <a href="{{ path('edit_climber', { 'id': user.id }) }}">modifier</a>
+                        </li>
+                    </ul>
+            </section>
+            {% include 'default/other.html.twig' %}
+        </div>
+    </div>
+
+    {% include 'default/footer.html.twig' %}
+
+
+{% endblock %}
