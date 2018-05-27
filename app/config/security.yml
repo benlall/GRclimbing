@@ -11,11 +11,6 @@ security:
         ROLE_ADMIN:   ROLE_USER
 
     providers:
-        in_memory: # à n'utiliser qu'en phase de dev
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
         user_db:
             entity:
                 class: AppBundle:User
@@ -31,7 +26,6 @@ security:
             anonymous: true
             pattern : ^/
             provider: user_db
-            provider: in_memory
             form_login :
                 login_path: login
                 check_path: login #path form action in twig
