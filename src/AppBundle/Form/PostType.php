@@ -17,8 +17,8 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('public')
-            ->add('createdAt', DateType::class, array('data' => new \DateTime('now')))
+            ->add('publicPost')
+            ->add('activePost')
             ->add('author')
             ->add('imgLink');
     }

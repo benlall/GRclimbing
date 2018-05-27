@@ -70,6 +70,12 @@ class Post
      */
     private $imgLink;
 
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime('now');
+    }
+    
     /**
      * @return int
      */

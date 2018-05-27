@@ -1,14 +1,13 @@
 {% extends 'admin/base_admin.html.twig' %}
 
 {% block section %}
-    <h1>Liste des utilisateurs</h1>
+    <h1 class="mt-3 mb-3 h1-back">Liste des utilisateurs</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Email</th>
                 <th>Login</th>
-                <th>Password</th>
                 <th>Staff</th>
                 <th>Actions</th>
             </tr>
@@ -18,7 +17,6 @@
             <tr>
                 <td>{{ user.email }}</td>
                 <td>{{ user.login }}</td>
-                <td>{{ user.password }}</td>
                 <td>{% if user.staff %}Yes{% else %}No{% endif %}</td>
                 <td>
                     <ul>
