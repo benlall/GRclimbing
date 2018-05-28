@@ -25,7 +25,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return $this->render('admin/index.html.twig', array());
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $connectedUser = $this->getUser();
+
+        return $this->render('admin/index.html.twig', ['connectedUser' => $connectedUser]);
     }
 
     /**
@@ -39,9 +42,13 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository('AppBundle:Post')->findAll();
 
-        return $this->render('admin/post/list.html.twig', array(
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $connectedUser = $this->getUser();
+
+        return $this->render('admin/post/list.html.twig', [
             'posts' => $posts,
-        ));
+            'connectedUser' => $connectedUser,
+        ]);
     }
 
     /**
@@ -56,18 +63,25 @@ class AdminController extends Controller
         $form = $this->createForm('AppBundle\Form\PostType', $post);
         $form->handleRequest($request);
 
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $connectedUser = $this->getUser();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
 
-            return $this->redirectToRoute('show_post', array('id' => $post->getId()));
+            return $this->redirectToRoute('show_post', [
+                'id' => $post->getId(),
+                'connectedUser' => $connectedUser,
+            ]);
         }
 
-        return $this->render('admin/post/new.html.twig', array(
+        return $this->render('admin/post/new.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
-        ));
+            'connectedUser' => $connectedUser,
+        ]);
     }
 
     /**
@@ -78,9 +92,13 @@ class AdminController extends Controller
      */
     public function showPost(Post $post)
     {
-        return $this->render('admin/post/show.html.twig', array(
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $connectedUser = $this->getUser();
+
+        return $this->render('admin/post/show.html.twig', [
             'post' => $post,
-        ));
+            'connectedUser' => $connectedUser,
+        ]);
     }
 
     /**
@@ -95,17 +113,24 @@ class AdminController extends Controller
         $editForm = $this->createForm('AppBundle\Form\PostType', $post);
         $editForm->handleRequest($request);
 
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $connectedUser = $this->getUser();
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('edit_post', array('id' => $post->getId()));
+            return $this->redirectToRoute('edit_post', [
+                'id' => $post->getId(),
+                'connectedUser' => $connectedUser,
+            ]);
         }
 
-        return $this->render('admin/post/edit.html.twig', array(
+        return $this->render('admin/post/edit.html.twig', [
             'post' => $post,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+            'connectedUser' => $connectedUser,
+        ]);
     }
 
     /**
@@ -151,13 +176,16 @@ class AdminController extends Controller
      */
     public function usersList()
     {
-        $em = $this->getDoctrine()->getManager();
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $connectedUser = $this->getUser();
 
+        $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('AppBundle:User')->findAll();
 
-        return $this->render('admin/user/list.html.twig', array(
+        return $this->render('admin/user/list.html.twig', [
             'users' => $users,
-        ));
+            'connectedUser' => $connectedUser,
+        ]);
     }
 
     /**
@@ -172,6 +200,9 @@ class AdminController extends Controller
         $form = $this->createForm('AppBundle\Form\UserType', $user);
         $form->handleRequest($request);
 
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $connectedUser = $this->getUser();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $encoder = $this->container->get('security.password_encoder');
@@ -180,13 +211,17 @@ class AdminController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('show_user', array('id' => $user->getId()));
+            return $this->redirectToRoute('show_user', [
+                'id' => $user->getId(),
+                'connectedUser' => $connectedUser,
+            ]);
         }
 
-        return $this->render('admin/user/new.html.twig', array(
+        return $this->render('admin/user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-        ));
+            'connectedUser' => $connectedUser,
+        ]);
     }
 
     /**
@@ -199,10 +234,14 @@ class AdminController extends Controller
     {
         $deleteForm = $this->createDeleteFormUser($user);
 
-        return $this->render('admin/user/show.html.twig', array(
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $connectedUser = $this->getUser();
+
+        return $this->render('admin/user/show.html.twig', [
             'user' => $user,
             'delete_form' => $deleteForm->createView(),
-        ));
+            'connectedUser' => $connectedUser,
+        ]);
     }
 
     /**
@@ -217,17 +256,24 @@ class AdminController extends Controller
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->handleRequest($request);
 
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $connectedUser = $this->getUser();
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('edit_user', array('id' => $user->getId()));
+            return $this->redirectToRoute('edit_user', [
+                'id' => $user->getId(),
+                'connectedUser' => $connectedUser,
+            ]);
         }
 
-        return $this->render('admin/user/edit.html.twig', array(
-            'User' => $user,
+        return $this->render('admin/user/edit.html.twig', [
+            'user' => $user,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+            'connectedUser' => $connectedUser,
+        ]);
     }
 
     /**

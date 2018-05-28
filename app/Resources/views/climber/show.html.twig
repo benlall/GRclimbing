@@ -7,7 +7,7 @@
     <div class="container rounded">
         <div class="row justify-content-center">
             <section class="col-lg-9 text-center">
-                    <h1>{{ user.login }}</h1>
+                    <h1 class="mt-3 mb-3 h1-back">Mon profil</h1>
 
                     <table class="table">
                         <tbody>
@@ -18,14 +18,6 @@
                         <tr>
                             <th>Login</th>
                             <td>{{ user.login }}</td>
-                        </tr>
-                        <tr>
-                            <th>Password</th>
-                            <td>{{ user.password }}</td>
-                        </tr>
-                        <tr>
-                            <th>Staff</th>
-                            <td>{% if user.staff %}Yes{% else %}No{% endif %}</td>
                         </tr>
                         </tbody>
                     </table>

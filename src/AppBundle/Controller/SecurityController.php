@@ -31,13 +31,13 @@ class SecurityController extends Controller
     public function redirectionAfterLogin()
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $user = $this->getUser();
+        $connectedUser = $this->getUser();
 
-        if (!$user->getStaff()) {
-            return $this->redirectToRoute('climbers', ['user' => $user]);
+        if (!$connectedUser->getStaff()) {
+            return $this->redirectToRoute('climbers', ['connectedUser' => $connectedUser]);
         }
 
-        return $this->redirectToRoute('admin', ['user' => $user]);
+        return $this->redirectToRoute('admin', ['connectedUser' => $connectedUser]);
     }
 
 

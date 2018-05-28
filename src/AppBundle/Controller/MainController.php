@@ -18,9 +18,9 @@ class MainController extends Controller
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository(Post::class)->findByActivePublicPost();
 
-        return $this->render('default/index.html.twig', array(
-            'posts' => $posts
-        ));
+        return $this->render('default/index.html.twig', [
+            'posts' => $posts,
+        ]);
     }
 
     /**
@@ -30,20 +30,6 @@ class MainController extends Controller
     public function contactAction()
     {
         return $this->render('default/contact.html.twig');
-    }
-
-    /**
-     * @Route("/user/climbers", name="climbers")
-     * @Method("GET")
-     */
-    public function climbersAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository(Post::class)->findByActivePrivatePost();
-
-        return $this->render('default/climbers.html.twig', array(
-            'posts' => $posts
-        ));
     }
 
 }

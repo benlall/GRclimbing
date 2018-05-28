@@ -7,23 +7,23 @@
 <div class="container rounded">
     <div class="row justify-content-center">
         <section class="col-lg-9 text-center">
-    <h1>Licensee edit</h1>
+    <h1 class="mt-3 mb-3 h1-back">Modifier mon profil</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
         <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
 
+    {{ form_start(delete_form, {'attr': {'onclick': 'return confirm("Etes vous sûr de vouloir supprimer cet utilisateur?")'}})}}
+        <input type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+
     <ul>
         <li>
             <a href="{{ path('climbers') }}">Retour à la page news des grimpeurs</a>
         </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
     </ul>
+
         </section>
         {% include 'default/other.html.twig' %}
     </div>

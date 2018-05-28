@@ -80,13 +80,13 @@ h4{
     background-color: rgb(106,106,106);
 }
 
-table {
+.prices-table {
     border-collapse: separate;
     empty-cells: hide;
 }
 
-.table td,
-.table th{
+.prices-table td,
+.prices-table th{
     border: 1px solid #839FB5;
 }
 
