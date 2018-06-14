@@ -16,7 +16,7 @@
         {% for user in users %}
             <tr>
                 <td>{{ user.email }}</td>
-                <td>{{ user.login }}</td>
+                <td>{{ user.fullname }}</td>
                 <td>{% if user.staff %}Yes{% else %}No{% endif %}</td>
                 <td>
                     <ul>

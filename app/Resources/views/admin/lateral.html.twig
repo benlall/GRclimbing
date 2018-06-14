@@ -1,4 +1,4 @@
-<h3>{% if is_granted('IS_AUTHENTICATED_FULLY') %}Bonjour  {{ connectedUser.login }} {% endif %}</h3>
+<h3>{% if app.user %}Bonjour  {{ app.user.fullname }} {% endif %}</h3>
 <a class="navbar-brand m-0 d-block" href="/logout"><i class="fas fa-power-off"></i></a>
 <a href="{{ path('list_users') }}" type="button" class="btn btn-secondary mt-4 d-block">Gestion des utilisateurs</a>
 <a href="{{ path('list_posts') }}" type="button" class="btn btn-secondary mt-4 mb-4 d-block">Gestion des news</a>

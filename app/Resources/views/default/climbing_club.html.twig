@@ -13,10 +13,10 @@
 
                 <p class="text-left p-2 m-2">Dès que les beaux jours sont là, nous en profitons pour aller grimper à l'extérieur principalement le samedi.</p>
                 <div class="d-flex justify-content-center">
-                    <a href="/contact" type="button" class="btn btn-secondary w-75 btn-lg">Contactez-nous</a>
+                    <a href="{{ path('contact') }}" type="button" class="btn btn-secondary w-75 btn-lg">Contactez-nous</a>
                 </div>
                 <div class="d-flex justify-content-center my-2 mx-0" id="reglement">
-                    <i class="fa fa-file-text" aria-hidden="true"><br><a href="doc/reglement_interieur%202017.pdf">Réglement intérieur 2017</a></i>
+                    <i class="fa fa-download" aria-hidden="true"><br><a href="{{ asset('assets/docs/reglement_interieur%202017.pdf') }}">Réglement intérieur 2017</a></i>
                 </div>
             </div>
 
@@ -36,13 +36,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3 col-6">
-                        <i class="fa fa-download" aria-hidden="true"><br><a href="doc/formulaire-inscription-saison-2017-2018.pdf">Formulaire d'inscription</a></i>
+                        <i class="fa fa-download" aria-hidden="true"><br><a href="{{ asset('assets/docs/formulaire-inscription-saison-2017-2018.pdf') }}">Formulaire d'inscription</a></i>
                     </div>
                     <div class="col-md-3 col-6">
-                        <i class="fa fa-download" aria-hidden="true"><br><a href="doc/QS-SPORT_cerfa_15699%5B608%5D.pdf">Questionnaire de santé</a></i>
+                        <i class="fa fa-download" aria-hidden="true"><br><a href="{{ asset ('assets/docs/QS-SPORT_cerfa_15699%5B608%5D.pdf') }}">Questionnaire de santé</a></i>
                     </div>
                     <div class="col-md-3 col-6">
-                        <i class="fa fa-file" aria-hidden="true"><br><a href="doc/2018-notice-assurance.pdf">Notice assurance</a></i>
+                        <i class="fa fa-download" aria-hidden="true"><br><a href="{{ asset ('assets/docs/2018-notice-assurance.pdf') }}">Notice assurance</a></i>
                     </div>
                     <div class="col-md-3 col-6">
                         <i class="fa fa-file" aria-hidden="true" data-toggle="modal" data-target="#Tarifs"><br><a href="#">Tableaux des tarifs</a></i>
