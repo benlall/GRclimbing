@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
                         <input type="password" class="form-control w-50 m-auto" id="password" name="_password" />
-                        <a href="#" class="a-login text-left ml-2">mot de passe oublié ?</a>
+                        <a href="{{ path('reset_password') }}" class="a-login text-left ml-2">mot de passe oublié ?</a>
                     </div>
                     <div class="row justify-content-center">
                         <div class="form-check form-check-inline">
@@ -35,7 +35,7 @@
     </div>
 
     <div id="scrollUp">
-        <a href="#top"><img src="/assets/images/to_top.png"/></a>
+        <a href="#top"><img src="{{ asset('assets/images/to_top.png') }}"/></a>
     </div>
 
     {% include 'default/footer.html.twig' %}

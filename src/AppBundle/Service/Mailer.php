@@ -48,4 +48,20 @@ class Mailer
         $this->mailer->send($mail);
     }
 
+    public function sendEmailToChangePassword($toUser, $subject, $fullname, $token)
+    {
+        $mail = new \Swift_Message;
+
+
+        $mail
+            ->setFrom($this->fromGR)
+            ->setTo($toUser)
+            ->setSubject($subject)
+            ->setBody($this->templating->render('admin/email/change_password.html.twig', [
+                'fullname' => $fullname,
+                'token' => $token]), 'text/html');
+
+        $this->mailer->send($mail);
+    }
+
 }
