@@ -58,8 +58,11 @@ class AdminController extends Controller
         $form = $this->createForm('AppBundle\Form\PostType', $post);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $author = $request->request->get('author');
+            $post->setAuthor($author);
             $em->persist($post);
             $em->flush();
 
@@ -102,9 +105,7 @@ class AdminController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('edit_post', [
-                'id' => $post->getId(),
-            ]);
+            return $this->redirectToRoute('list_posts');
         }
 
         return $this->render('admin/post/edit.html.twig', [

@@ -133,7 +133,11 @@ caption{
 
 /*BACK*/
 
-.h1-back{
-    font-size: 2rem;
+.h1-back {
+    /*font-size: 2rem;*/
 }
 
+.icon-img {
+    width: 100px;
+    height: auto;
+}

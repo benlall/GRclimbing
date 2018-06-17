@@ -13,27 +13,33 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 text-center m-auto">
+                    <div class="col-12 col-md-8 offset-md-8 m-auto">
                         {{ form_start(form) }}
-                        <div class="form-group m-auto">
-                            {{ form_row(form.firstname) }}
-                        </div>
-                        <div class="form-group m-auto">
-                            {{  form_row(form.lastname) }}
-                        </div>
-                        <div class="form-group m-auto">
-                            {{ form_row(form.email) }}
-                        </div>
-                        <div class="form-group m-auto">
-                            {{ form_row(form.phone) }}
-                        </div>
-                        <div class="form-group m-auto">
-                            {{ form_row(form.question) }}
-                        </div>
-                        <div class="text-center mb-4">
-                            <input type="submit" class="btn btn-secondary" value="Envoyer">
-                        </div>
+                        <table class="table table-borderless">
+                            <tr>
+                                <th scope="row"> {{ form_label(form.lastname) }}</th>
+                                <td> {{ form_widget(form.lastname) }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> {{ form_label(form.firstname) }}</th>
+                                <td> {{ form_widget(form.firstname) }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> {{ form_label(form.email) }}</th>
+                                <td> {{ form_widget(form.email) }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> {{ form_label(form.phone) }}</th>
+                                <td> {{ form_widget(form.phone) }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> {{ form_label(form.question) }}</th>
+                                <td> {{ form_widget(form.question) }}</td>
+                            </tr>
+                        </table>
+                        <input type="submit" value="Envoyer" class="d-block mx-auto mb-4"/>
                         {{ form_end(form) }}
+                        <p>* champs requis</p>
                     </div>
                 </div>
             </section>

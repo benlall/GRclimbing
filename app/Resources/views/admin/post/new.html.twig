@@ -1,16 +1,39 @@
 {% extends 'admin/base_admin.html.twig' %}
 
 {% block section %}
-    <h1>Création d'une nouvelle news</h1>
+    <h2 class="text-center my-5">Création d'une nouvelle news</h2>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Création" />
-    {{ form_end(form) }}
+    <div class="row">
+        <div class="col-12 col-md-6 offset-md-3 m-auto">
+            {{ form_start(form) }}
+            <table class="table table-borderless">
+                <tr>
+                    <th scope="row"> {{ form_label(form.title) }}</th>
+                    <td> {{ form_widget(form.title) }}</td>
+                </tr>
+                <tr>
+                    <th scope="row"> {{ form_label(form.content) }}</th>
+                    <td> {{ form_widget(form.content, { 'attr': {'cols': '40', 'rows':'10'}}) }}</td>
+                </tr>
+                <tr>
+                    <th scope="row"> {{ form_label(form.publicPost) }}</th>
+                    <td> {{ form_widget(form.publicPost) }}</td>
+                </tr>
+                <tr>
+                    <th scope="row"> {{ form_label(form.activePost) }}</th>
+                    <td> {{ form_widget(form.activePost) }}</td>
+                </tr>
+                <tr>
+                    <th scope="row"> {{ form_label(form.imgLink) }}</th>
+                    <td> {{ form_widget(form.imgLink) }}</td>
+                </tr>
+            </table>
+            <input type="hidden" value="{{ app.user.fullname }}" name="author">
+            <input type="submit" value="Création" class="d-block mx-auto mb-4"/>
+            {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('list_posts') }}">Revenir à la liste des news</a>
-        </li>
-    </ul>
+            <a href="{{ path('list_posts') }}" class="text-center d-block">Revenir à la liste des news</a>
+
+        </div>
+    </div>
 {% endblock %}

@@ -1,16 +1,32 @@
 {% extends 'admin/base_admin.html.twig' %}
 
 {% block section %}
-    <h1>Création d'un utilisateur</h1>
+    <h2 class="text-center my-5">Création d'un licencié</h2>
+    <div class="row">
+        <div class="col-12 col-md-6 offset-md-3 m-auto">
+            {{ form_start(form) }}
+            <table class="table table-borderless">
+                <tr>
+                    <th scope="row"> {{ form_label(form.email) }}</th>
+                    <td> {{ form_widget(form.email) }}</td>
+                </tr>
+                <tr>
+                    <th scope="row"> {{ form_label(form.fullname) }}</th>
+                    <td> {{ form_widget(form.fullname) }}</td>
+                </tr>
+                <tr>
+                    <th scope="row"> {{ form_label(form.staff) }}</th>
+                    <td> {{ form_widget(form.staff) }}</td>
+                </tr>
+            </table>
+            <input type="submit" value="Création" class="d-block mx-auto mb-4"/>
+            {{ form_end(form) }}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('list_users') }}">Retour à la liste des utilisateurs</a>
-        </li>
-    </ul>
+            <ul>
+                <li>
+                    <a href="{{ path('list_users') }}">Retour à la liste des licenciés</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}
