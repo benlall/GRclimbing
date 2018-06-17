@@ -5,8 +5,10 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
-class ClimberType extends AbstractType
+
+class VerifyEmailType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -14,8 +16,7 @@ class ClimberType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('fullname');
+            ->add('email', EmailType::class, array('label' => 'Email :'));
     }
 
     /**
@@ -24,17 +25,15 @@ class ClimberType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\User'
+            'data_class' => 'AppBundle\Entity\User',
         ));
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritdoc} getName() is now deprecated
      */
     public function getBlockPrefix()
     {
         return 'appbundle_user';
     }
-
-
 }

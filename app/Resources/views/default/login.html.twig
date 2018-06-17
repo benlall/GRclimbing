@@ -20,12 +20,12 @@
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
                         <input type="password" class="form-control w-50 m-auto" id="password" name="_password" />
-                        <a href="#" class="a-login text-left ml-2">mot de passe oublié ?</a>
+                        <a href="{{ path('reset_password') }}" class="a-login text-left ml-2">mot de passe oublié ?</a>
                     </div>
                     <div class="row justify-content-center">
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label align-text-top" for="exampleCheck1">Se souvenir de moi</label>
+                            <input type="checkbox" class="form-check-input mb-3" id="exampleCheck1">
+                            <label class="form-check-label align-text-top mb-3" for="exampleCheck1">Se souvenir de moi</label>
                         </div>
                     </div>
                     <button class="btn btn-secondary" type="submit" name="login">Se connecter</button>
@@ -35,7 +35,7 @@
     </div>
 
     <div id="scrollUp">
-        <a href="#top"><img src="/assets/images/to_top.png"/></a>
+        <a href="#top"><img src="{{ asset('assets/images/to_top.png') }}"/></a>
     </div>
 
     {% include 'default/footer.html.twig' %}

@@ -7,27 +7,25 @@
     <div class="container rounded">
         <div class="row justify-content-center">
             <section class="col-lg-9 text-center">
-                    <h1 class="mt-3 mb-3 h1-back">Mon profil</h1>
+                <h2 class="mt-3 mb-3 h1-back">Mon profil</h2>
 
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <th>Email</th>
-                            <td>{{ user.email }}</td>
-                        </tr>
-                        <tr>
-                            <th>Login</th>
-                            <td>{{ user.login }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <table class="table w-75 m-auto">
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Login</th>
+                        <td>{{ user.fullname }}</td>
+                    </tr>
+                </table>
 
-                    <ul>
-                        <li>
-                            <a href="{{ path('edit_climber', { 'id': user.id }) }}">modifier</a>
-                        </li>
-                    </ul>
+                <a class="btn btn-secondary d-block w-50 mt-3 mx-auto" href="{{ path('edit_climber', { 'id': user.id }) }}">modifier mon identité</a>
+
+                <a class="btn btn-secondary d-block w-50 my-3 mx-auto" href="{{ path('edit_password_climber', { 'id': user.id }) }}">changer mon mot de passe</a>
+
             </section>
+
             {% include 'default/other.html.twig' %}
         </div>
     </div>

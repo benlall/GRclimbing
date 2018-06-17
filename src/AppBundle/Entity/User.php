@@ -60,6 +60,12 @@ class User implements UserInterface, \Serializable
      */
     private $createdAt;
 
+    /**
+     * @var string
+     * @ORM\Column(name="token", type="string", nullable=true)
+     */
+    private $token;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -180,6 +186,26 @@ class User implements UserInterface, \Serializable
         $this->createdAt = $createdAt;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     * @return User
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+
 
     public function getUsername()
     {
