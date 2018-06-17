@@ -35,9 +35,9 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="login", type="string", length=100, nullable=true)
+     * @ORM\Column(name="fullname", type="string", length=100, nullable=true)
      */
-    private $login;
+    private $fullname;
 
     /**
      * @var string
@@ -52,6 +52,19 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="staff", type="boolean")
      */
     private $staff;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->password = uniqid();
+    }
 
     /**
      * Get id
@@ -87,26 +100,21 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set login
-     *
-     * @param string $login
-     *
-     * @return Licensee
+     * @return string
      */
-    public function setLogin($login)
+    public function getFullname()
     {
-        $this->login = $login;
-        return $this;
+        return $this->fullname;
     }
 
     /**
-     * Get login
-     *
-     * @return string
+     * @param string $fullname
+     * @return User
      */
-    public function getLogin()
+    public function setFullname($fullname)
     {
-        return $this->login;
+        $this->fullname = $fullname;
+        return $this;
     }
 
     /**
@@ -155,6 +163,24 @@ class User implements UserInterface, \Serializable
         return $this->staff;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     * @return User
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
     public function getUsername()
     {
         return $this->email; // l'email est utilisé comme login
@@ -166,14 +192,10 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        switch($this->getStaff()) {
-            case self::ROLE_STAFF:
-                return array('ROLE_ADMIN');
-                break;
-            case self::ROLE_CLIMBER:
-                return array('ROLE_USER');
-                break;
+        if ($this->getStaff()) {
+            return array('ROLE_ADMIN');
         }
+        return array('ROLE_USER');
     }
 
     public function eraseCredentials()

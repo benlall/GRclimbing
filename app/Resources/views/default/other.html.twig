@@ -4,6 +4,11 @@
             <div>
                 <h2 class="mt-3 mb-3" id="licensee">Espace licenciés</h2>
                 <a href="/login" class="btn btn-outline-secondary" >Connectez-vous</a>
+                {% if app.user %}
+                    <h3 class="d-inline-block m-2">Bonjour  {{ app.user.fullname }}</h3>
+                    <a class="navbar-brand mx-5 my-2" href="/logout"><i class="fas fa-power-off"></i></a>
+                    <a class="navbar-brand mx-5 my-2" href="{{ path('show_climber', { 'id': app.user.id }) }}"><i class="fas fa-user"></i>  Mon profil</a>
+                {% endif %}
             </div>
             <div>
             <h2 class="mt-5 mb-3" id="ffme">FFME</h2>

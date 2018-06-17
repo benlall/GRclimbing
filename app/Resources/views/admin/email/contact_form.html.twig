@@ -1,0 +1,12 @@
+{% extends '/admin/email/layout.html.twig' %}
+
+{% block content %}
+    <h3>Bonjour</h3>
+    <p>Vous avez un nouveau message envoyé via le formulaire de contact du site Glace & Roc.
+    </p>
+    <p>Prénom: {{ firstname }}</p>
+    <p>Nom: {{ lastname }}</p>
+    <p>Email: {{ email }}</p>
+    <p>Téléphone: {{ phone }}</p>
+    <p>Message: {{ question }}</p>
+{% endblock %}

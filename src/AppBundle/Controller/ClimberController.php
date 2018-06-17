@@ -27,12 +27,8 @@ class ClimberController extends Controller
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository(Post::class)->findByActivePrivatePost();
 
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $connectedUser = $this->getUser();
-
         return $this->render('default/climbers.html.twig', [
             'posts' => $posts,
-            'connectedUser' => $connectedUser,
         ]);
     }
 
@@ -44,15 +40,8 @@ class ClimberController extends Controller
      */
     public function showClimber(User $user)
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $connectedUser = $this->getUser();
-
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $connectedUser = $this->getUser();
-
         return $this->render('climber/show.html.twig', [
             'user' => $user,
-            'connectedUser' => $connectedUser,
         ]);
     }
 
@@ -68,9 +57,6 @@ class ClimberController extends Controller
         $editForm = $this->createForm('AppBundle\Form\ClimberType', $user);
         $editForm->handleRequest($request);
 
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $connectedUser = $this->getUser();
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -81,7 +67,6 @@ class ClimberController extends Controller
             'user' => $user,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-            'connectedUser' => $connectedUser,
         ));
     }
 

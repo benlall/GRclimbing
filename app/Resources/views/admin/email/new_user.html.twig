@@ -1,0 +1,41 @@
+{% extends '/admin/email/layout.html.twig' %}
+
+{% block content %}
+
+    <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td>
+                <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td align="center" height="25" style="height:25px; font-size: 0;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><h1 style="font-family: Helvetica, Arial, sans-serif; font-size: 28px; font-weight:normal; color: #2C3E50; margin:0; mso-line-height-rule:exactly;">Bonjour {{ fullname }},</h1></td>
+                    </tr>
+                    <tr>
+                        <td align="center" height="25" style="height:25px; font-size: 0;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 25px; color: #2C3E50;">Votre compte a été créé, vous pouvez désormais vous connecter aux news du club <a href="{{ url('login') }}">login</a><br>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" height="25" style="height:25px; font-size: 0;">&nbsp;</td>
+        </tr>
+        <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td align="justify" style="font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 25px; color: #2C3E50;">Voici votre mot de passe temporaire : {{ password }}. Je vous recommande de le changer dès votre première connexion.<br>
+                </td>
+            </tr>
+        </table>
+    </table>
+    </td>
+    </tr>
+
+    </table>
+    </body>
+{% endblock %}
+

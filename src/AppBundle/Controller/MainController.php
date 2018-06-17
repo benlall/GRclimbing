@@ -2,16 +2,19 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Model\Contact;
+use AppBundle\Service\Mailer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Post;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class MainController extends Controller
 {
     /**
-     * @Route("/", name="homepage" , requirements={"id" = "\d+"})
+     * @Route("/", name="homepage")
      */
     public function indexAction()
     {
@@ -25,11 +28,35 @@ class MainController extends Controller
 
     /**
      * @Route("/contact", name="contact")
-     * @Method("GET")
+     * @Method({"GET","POST"})
      */
-    public function contactAction()
+    public function contactAction(Request $request, Mailer  $mailer)
     {
-        return $this->render('default/contact.html.twig');
+        $contact = new Contact();
+
+        $form = $this->createForm('AppBundle\Form\ContactType', $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $mailer->sendEmailContactForm(
+                $contact->getEmail(),
+                $contact->getFirstname(),
+                $contact->getLastname(),
+                $contact->getEmail(),
+                'Demande d\'information Glace & Roc',
+                $contact->getPhone(),
+                $contact->getQuestion()
+            );
+
+            $this->addFlash('success', 'Votre message a bien été envoyé.');
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('default/contact.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
     }
 
 }
