@@ -15,8 +15,7 @@ class ClimberType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('fullname')
-            ->add('password');
+            ->add('fullname');
     }
 
     /**

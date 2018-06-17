@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Post;
 use AppBundle\Entity\User;
+use AppBundle\Form\VerifyEmailType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -68,6 +69,45 @@ class ClimberController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+    }
+
+    /**
+     * Displays a form to edit an existing user entity.
+     *
+     * @Route("/{id}/editpassword", name="edit_password_climber")
+     * @Method({"GET", "POST"})
+     */
+    public function editPasswordClimber(Request $request, User $user)
+    {
+        $user = new User();
+        $form = $this->createForm(VerifyEmailType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $userForm = $form->getData();
+            $email = $userForm->getEmail();
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository(User::class)->findOneBy([
+                'email' => $email
+            ]);
+
+            if ($user) {
+                $user->setToken(uniqid());
+                $em->persist($user);
+                $em->flush();
+
+                return $this->redirectToRoute('change_password', ['token' =>  $user->getToken()]);
+
+            } else {
+                $this->addFlash('error', 'Email invalide. Veuillez vérifier que l\'adresse saisie est correcte.');
+                return $this->redirectToRoute('homepage');
+            }
+        }
+
+        return $this->render('/climber/verify_email_for_update.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**

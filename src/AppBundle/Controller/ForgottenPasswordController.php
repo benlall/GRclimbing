@@ -4,7 +4,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
-use AppBundle\Form\ForgottenPasswordType;
+use AppBundle\Form\VerifyEmailType;
 use AppBundle\Form\NewPasswordType;
 use AppBundle\Service\Mailer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -24,7 +24,7 @@ class ForgottenPasswordController extends Controller
     public function sendEmail(Request $request, Mailer $mailer)
     {
         $user = new User();
-        $form = $this->createForm(ForgottenPasswordType::class, $user);
+        $form = $this->createForm(VerifyEmailType::class, $user);
         $form->handleRequest($request);
 
 
@@ -55,7 +55,7 @@ class ForgottenPasswordController extends Controller
                 return $this->redirectToRoute('reset_password');
             }
         };
-        return $this->render('/default/send_email_for_password.html.twig', [
+        return $this->render('/climber/send_email_for_password.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);
@@ -91,7 +91,7 @@ class ForgottenPasswordController extends Controller
             } else {
                 $this->addFlash('error', 'Vous n\'avez pas l\'autorisation de procéder à ce changement de mot de passe. Veuillez recommencer la procédure.');            }
         }
-        return $this->render('/default/change_password.html.twig', [
+        return $this->render('/climber/change_password.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);

@@ -19,7 +19,7 @@ class NewPasswordType extends AbstractType
         $builder
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'Le mot de passe doit être identique dans chaque champs',
+                'invalid_message' => 'Les deux mots de passe ne sont pas identiques',
                 'first_options' => [
                     'label' => 'Votre nouveau mot de passe',
                     //TODO Remettre une REGEX pour définir le MDP

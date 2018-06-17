@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 
-class ForgottenPasswordType extends AbstractType
+class VerifyEmailType extends AbstractType
 {
     /**
      * {@inheritdoc}
