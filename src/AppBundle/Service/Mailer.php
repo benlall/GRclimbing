@@ -33,4 +33,19 @@ class Mailer
         $this->mailer->send($mail);
     }
 
+    public function sendEmailContactForm($from, $contactFirstname, $contactLastname, $contactEmail, $subject, $contactPhone, $contactQuestion)
+    {
+        $mail = new \Swift_Message;
+
+        $mail
+            ->setFrom($from)
+            ->setTo($this->toGR)
+            ->setSubject($subject)
+            ->setBody($this->templating->render('admin/email/contact_form.html.twig', [
+                'firstname' => $contactFirstname,
+                'lastname' => $contactLastname, 'email' => $contactEmail, 'phone' => $contactPhone, 'question' => $contactQuestion, ]), 'text/html');
+
+        $this->mailer->send($mail);
+    }
+
 }
