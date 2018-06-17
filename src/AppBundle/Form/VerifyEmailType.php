@@ -16,7 +16,7 @@ class VerifyEmailType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, array('label' => 'Email'));
+            ->add('email', EmailType::class, array('label' => 'Email :'));
     }
 
     /**

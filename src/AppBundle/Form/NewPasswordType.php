@@ -21,11 +21,11 @@ class NewPasswordType extends AbstractType
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les deux mots de passe ne sont pas identiques',
                 'first_options' => [
-                    'label' => 'Votre nouveau mot de passe',
+                    'label' => 'Votre nouveau mot de passe :',
                     //TODO Remettre une REGEX pour définir le MDP
                 ],
                 'second_options' => [
-                    'label' => 'Confirmez votre mot de passe',
+                    'label' => 'Confirmez votre mot de passe :',
                 ],
             ]);
     }
