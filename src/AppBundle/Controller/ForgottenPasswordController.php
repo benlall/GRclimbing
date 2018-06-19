@@ -67,8 +67,8 @@ class ForgottenPasswordController extends Controller
      */
     public function changePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        $user = new User();
-        $form = $this->createForm(NewPasswordType::class, $user);
+
+        $form = $this->createForm(NewPasswordType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -87,12 +87,11 @@ class ForgottenPasswordController extends Controller
 
                 $this->addFlash('success', 'La modification de votre mot de passe a bien été prise en compte.');
 
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('homepage');
             } else {
                 $this->addFlash('error', 'Vous n\'avez pas l\'autorisation de procéder à ce changement de mot de passe. Veuillez recommencer la procédure.');            }
         }
         return $this->render('/climber/change_password.html.twig', [
-            'user' => $user,
             'form' => $form->createView(),
         ]);
     }

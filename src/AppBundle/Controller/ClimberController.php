@@ -74,21 +74,19 @@ class ClimberController extends Controller
     /**
      * Displays a form to edit an existing user entity.
      *
-     * @Route("/{id}/editpassword", name="edit_password_climber")
+     * @Route("/{id}/editPassword", name="edit_password_climber")
      * @Method({"GET", "POST"})
      */
-    public function editPasswordClimber(Request $request, User $user)
+    public function editPasswordClimber(Request $request)
     {
-        $user = new User();
-        $form = $this->createForm(VerifyEmailType::class, $user);
+        $form = $this->createForm(VerifyEmailType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userForm = $form->getData();
-            $email = $userForm->getEmail();
             $em = $this->getDoctrine()->getManager();
             $user = $em->getRepository(User::class)->findOneBy([
-                'email' => $email
+                'email' => $userForm->getEmail()
             ]);
 
             if ($user) {
@@ -105,7 +103,6 @@ class ClimberController extends Controller
         }
 
         return $this->render('/climber/verify_email_for_update.html.twig', [
-            'user' => $user,
             'form' => $form->createView(),
         ]);
     }
